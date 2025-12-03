@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Horário - Bella Estética</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-6 px-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-stone-800">Bella Estética</a>
+            <a href="index.html" class="text-stone-600 hover:text-stone-800">← Voltar</a>
+        </div>
+    </header>
+
+    <!-- Form Container -->
+    <main class="py-12 px-4">
+        <div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12">
+            
+            <h1 class="text-4xl font-bold text-center mb-2 text-stone-800">Agende seu Horário</h1>
+            <p class="text-center text-stone-600 mb-8">Preencha os dados e escolha o melhor horário para você</p>
+
+            <!-- Success Message (Hidden by default) -->
+            <div id="successMessage" class="hidden bg-green-50 border-2 border-green-500 rounded-2xl p-6 mb-6 text-center">
+                <div class="text-5xl mb-3">✅</div>
+                <h3 class="text-2xl font-bold text-green-800 mb-2">Agendamento Confirmado!</h3>
+                <p class="text-green-700">Seu horário foi reservado com sucesso. Até breve!</p>
+                <button onclick="resetForm()" class="mt-4 bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full">
+                    Fazer Novo Agendamento
+                </button>
+            </div>
+
+            <!-- Form -->
+            <form id="agendamentoForm" class="space-y-6">
+                
+                <!-- Nome -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-stone-700">Nome Completo</label>
+                    <input 
+                        type="text" 
+                        id="nome" 
+                        required
+                        class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-rose-500 focus:outline-none transition-colors"
+                        placeholder="Seu nome completo"
+                    >
+                </div>
+
+                <!-- Telefone -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-stone-700">Telefone (WhatsApp)</label>
+                    <input 
+                        type="tel" 
+                        id="telefone" 
+                        required
+                        class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-rose-500 focus:outline-none transition-colors"
+                        placeholder="(00) 00000-0000"
+                    >
+                </div>
+
+                <!-- Serviço -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-stone-700">Serviço</label>
+                    <select 
+                        id="servico" 
+                        required
+                        class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-rose-500 focus:outline-none transition-colors"
+                    >
+                        <option value="">Selecione um serviço</option>
+                        <option value="Corte Feminino">Corte Feminino</option>
+                        <option value="Corte Masculino">Corte Masculino</option>
+                        <option value="Escova">Escova</option>
+                        <option value="Manicure">Manicure</option>
+                        <option value="Sobrancelha">Sobrancelha</option>
+                        <option value="Coloração">Coloração</option>
+                    </select>
+                </div>
+
+                <!-- Data -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-stone-700">Data</label>
+                    <input 
+                        type="date" 
+                        id="data" 
+                        required
+                        class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-rose-500 focus:outline-none transition-colors"
+                    >
+                </div>
+
+                <!-- Loading Horários -->
+                <div id="loadingHorarios" class="hidden text-center py-8">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-rose-500 border-t-transparent"></div>
+                    <p class="mt-4 text-stone-600">Carregando horários disponíveis...</p>
+                </div>
+
+                <!-- Horários Disponíveis -->
+                <div id="horariosContainer" class="hidden">
+                    <label class="block text-sm font-semibold mb-3 text-stone-700">Horários Disponíveis</label>
+                    <div id="horariosList" class="grid grid-cols-3 md:grid-cols-4 gap-3">
+                        <!-- Horários serão inseridos aqui dinamicamente -->
+                    </div>
+                    <input type="hidden" id="horarioSelecionado">
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="hidden bg-red-50 border-2 border-red-500 rounded-xl p-4 text-red-700 text-center">
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit" 
+                    id="submitBtn"
+                    class="w-full bg-rose-500 hover:bg-rose-600 text-white py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    Confirmar Agendamento
+                </button>
+
+            </form>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-800 text-stone-200 py-8 px-4 mt-12">
+        <div class="text-center">
+            <p>© 2025 Bella Estética. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuração dos endpoints do Google Apps Script
+        const CONFIG = {
+            GET_HORARIOS: 'https://script.google.com/macros/s/SEU_ID_AQUI/exec',
+            POST_AGENDAR: 'https://script.google.com/macros/s/SEU_ID_AQUI/exec'
+        };
+
+        // Elementos do DOM
+        const dataInput = document.getElementById('data');
+        const horariosContainer = document.getElementById('horariosContainer');
+        const horariosList = document.getElementById('horariosList');
+        const loadingHorarios = document.getElementById('loadingHorarios');
+        const agendamentoForm = document.getElementById('agendamentoForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Definir data mínima como hoje
+        const hoje = new Date().toISOString().split('T')[0];
+        dataInput.min = hoje;
+
+        // Quando a data for alterada, buscar horários
+        dataInput.addEventListener('change', async () => {
+            const dataSelecionada = dataInput.value;
+            if (!dataSelecionada) return;
+
+            // Mostrar loading
+            loadingHorarios.classList.remove('hidden');
+            horariosContainer.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+
+            try {
+                // Fazer requisição GET para buscar horários
+                const response = await fetch(`${CONFIG.GET_HORARIOS}?action=getHorarios&data=${dataSelecionada}`);
+                const data = await response.json();
+
+                if (data.success && data.horarios.length > 0) {
+                    renderHorarios(data.horarios);
+                } else {
+                    showError('Nenhum horário disponível para esta data.');
+                }
+            } catch (error) {
+                console.error('Erro ao buscar horários:', error);
+                showError('Erro ao carregar horários. Tente novamente.');
+            } finally {
+                loadingHorarios.classList.add('hidden');
+            }
+        });
+
+        // Renderizar lista de horários
+        function renderHorarios(horarios) {
+            horariosList.innerHTML = '';
+            
+            horarios.forEach(horario => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = horario;
+                btn.className = 'py-3 px-4 rounded-xl border-2 border-stone-200 hover:border-rose-500 hover:bg-rose-50 transition-all font-semibold text-stone-700 hover:text-rose-600';
+                
+                btn.addEventListener('click', () => {
+                    // Remover seleção anterior
+                    document.querySelectorAll('#horariosList button').forEach(b => {
+                        b.classList.remove('bg-rose-500', 'text-white', 'border-rose-500');
+                        b.classList.add('border-stone-200', 'text-stone-700');
+                    });
+                    
+                    // Adicionar seleção ao botão clicado
+                    btn.classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+                    btn.classList.remove('border-stone-200', 'text-stone-700');
+                    
+                    // Salvar horário selecionado
+                    document.getElementById('horarioSelecionado').value = horario;
+                });
+                
+                horariosList.appendChild(btn);
+            });
+
+            horariosContainer.classList.remove('hidden');
+        }
+
+        // Enviar formulário
+        agendamentoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+            const horario = document.getElementById('horarioSelecionado').value;
+
+            if (!horario) {
+                showError('Por favor, selecione um horário.');
+                return;
+            }
+
+            // Desabilitar botão
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            errorMessage.classList.add('hidden');
+
+            try {
+                // Fazer POST para agendar
+                const response = await fetch(CONFIG.POST_AGENDAR, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'agendar',
+                        nome,
+                        telefone,
+                        servico,
+                        data,
+                        horario
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Mostrar mensagem de sucesso
+                    agendamentoForm.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    showError(result.message || 'Erro ao confirmar agendamento. Tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro ao agendar:', error);
+                showError('Erro ao enviar agendamento. Verifique sua conexão e tente novamente.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirmar Agendamento';
+            }
+        });
+
+        // Mostrar mensagem de erro
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+            setTimeout(() => {
+                errorMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Resetar formulário
+        function resetForm() {
+            agendamentoForm.reset();
+            agendamentoForm.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+            horariosContainer.classList.add('hidden');
+            horariosList.innerHTML = '';
+            document.getElementById('horarioSelecionado').value = '';
+        }
+    </script>
+
+</body>
+</html>

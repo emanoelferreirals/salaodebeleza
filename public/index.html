@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Estética - Salão de Beleza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <!-- Header Hero -->
+    <header class="relative h-screen bg-gradient-to-br from-rose-100 via-stone-100 to-amber-50">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-bold text-stone-800 mb-4 fade-in">Bella Estética</h1>
+            <p class="text-xl md:text-2xl text-stone-600 mb-8 fade-in">Beleza que transforma, cuidado que inspira</p>
+            <a href="agendar.html" class="bg-rose-500 hover:bg-rose-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-lg">
+                Agendar Horário
+            </a>
+        </div>
+    </header>
+
+    <!-- Sobre -->
+    <section class="py-20 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <h2 class="text-4xl font-bold mb-6 text-stone-800">Sobre Nós</h2>
+                <p class="text-lg text-stone-600 leading-relaxed mb-4">
+                    No Bella Estética, acreditamos que beleza é autoestima e bem-estar. Com mais de 10 anos de experiência, nossa equipe de profissionais qualificados está pronta para realçar o melhor de você.
+                </p>
+                <p class="text-lg text-stone-600 leading-relaxed">
+                    Utilizamos produtos de alta qualidade e técnicas modernas para garantir resultados incríveis. Seu momento de cuidado começa aqui.
+                </p>
+            </div>
+            <div class="bg-gradient-to-br from-rose-200 to-amber-200 rounded-3xl h-96 shadow-xl"></div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="py-20 px-4 md:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-stone-800">Nossos Serviços</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-4">💇‍♀️</div>
+                    <h3 class="text-2xl font-semibold mb-3">Corte Feminino</h3>
+                    <p class="text-stone-600">Cortes modernos e personalizados para realçar sua beleza única.</p>
+                </div>
+
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-4">💇‍♂️</div>
+                    <h3 class="text-2xl font-semibold mb-3">Corte Masculino</h3>
+                    <p class="text-stone-600">Estilo e elegância para o homem moderno e atualizado.</p>
+                </div>
+
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-4">🌸</div>
+                    <h3 class="text-2xl font-semibold mb-3">Escova</h3>
+                    <p class="text-stone-600">Cabelos sedosos e alinhados para qualquer ocasião especial.</p>
+                </div>
+
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-4">💅</div>
+                    <h3 class="text-2xl font-semibold mb-3">Manicure</h3>
+                    <p class="text-stone-600">Unhas impecáveis com acabamento profissional e delicado.</p>
+                </div>
+
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-4">✨</div>
+                    <h3 class="text-2xl font-semibold mb-3">Sobrancelha</h3>
+                    <p class="text-stone-600">Design perfeito para valorizar seu olhar e expressão.</p>
+                </div>
+
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h3 class="text-2xl font-semibold mb-3">Coloração</h3>
+                    <p class="text-stone-600">Cores vibrantes e tratamentos que cuidam dos seus fios.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section class="py-20 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-stone-800">Galeria</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-rose-300 to-pink-200 rounded-2xl h-64 shadow-lg hover:scale-105 transition-transform"></div>
+                <div class="bg-gradient-to-br from-amber-300 to-orange-200 rounded-2xl h-64 shadow-lg hover:scale-105 transition-transform"></div>
+                <div class="bg-gradient-to-br from-purple-300 to-pink-200 rounded-2xl h-64 shadow-lg hover:scale-105 transition-transform"></div>
+                <div class="bg-gradient-to-br from-blue-300 to-cyan-200 rounded-2xl h-64 shadow-lg hover:scale-105 transition-transform"></div>
+                <div class="bg-gradient-to-br from-green-300 to-teal-200 rounded-2xl h-64 shadow-lg hover:scale-105 transition-transform"></div>
+                <div class="bg-gradient-to-br from-yellow-300 to-amber-200 rounded-2xl h-64 shadow-lg hover:scale-105 transition-transform"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="py-20 px-4 md:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-stone-800">O Que Dizem Nossos Clientes</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg">
+                    <div class="text-yellow-500 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-stone-600 mb-4 italic">"Melhor salão da região! Saio sempre renovada e feliz. Equipe maravilhosa!"</p>
+                    <p class="font-semibold text-stone-800">— Mariana Silva</p>
+                </div>
+
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg">
+                    <div class="text-yellow-500 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-stone-600 mb-4 italic">"Profissionais competentes e atenciosos. O ambiente é acolhedor e relaxante!"</p>
+                    <p class="font-semibold text-stone-800">— João Pedro</p>
+                </div>
+
+                <div class="bg-stone-50 rounded-2xl p-8 shadow-lg">
+                    <div class="text-yellow-500 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-stone-600 mb-4 italic">"Amei o resultado! Voltarei sempre. Recomendo de olhos fechados!"</p>
+                    <p class="font-semibold text-stone-800">— Ana Costa</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-800 text-stone-200 py-12 px-4">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Bella Estética</h3>
+                <p>Beleza e bem-estar em um só lugar</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-3">Endereço</h4>
+                <p>Rua das Flores, 123<br>Centro - Salgueiro, PE<br>CEP: 56000-000</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-3">Horário</h4>
+                <p>Segunda a Sexta: 9h - 19h<br>Sábado: 9h - 17h<br>Domingo: Fechado</p>
+                <div class="mt-4">
+                    <a href="#" class="text-2xl mr-4">📘</a>
+                    <a href="#" class="text-2xl mr-4">📷</a>
+                    <a href="#" class="text-2xl">💬</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-stone-400">
+            © 2025 Bella Estética. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante Mobile -->
+    <a href="agendar.html" class="fixed bottom-6 right-6 bg-rose-500 hover:bg-rose-600 text-white p-4 rounded-full shadow-2xl md:hidden z-50 transform hover:scale-110 transition-all">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+    </a>
+
+</body>
+</html>
